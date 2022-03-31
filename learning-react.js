@@ -1,5 +1,31 @@
                       //Module : 32
-// Video No - 07  (=== The way to make components by React and making design with pass dynamic data ===)
+// Video No - 06 (=== The way to make components by React and making simple design with pass dynamic data basic way ===)                    
+function App() {
+  return (
+    <div className="App">
+        <Person name= "Zayan" food="Biriani"></Person>  
+        <Person name= "Rayhan" food= "Chocolate"></Person>
+        <Person name= "Ahmed Zubayer" food="Frutes"></Person>
+    </div>
+  );
+}
+
+function Person(props){
+  const personStyle = {
+    border: '2px solid red',
+    margin: '10px'
+  };
+  return  (
+    <div style={personStyle}>
+        <h1>Name: {props.name}</h1>
+        <h3>Best food of the Year {props.food}</h3>
+    </div>
+  );
+}
+
+export default App;
+
+// Video No - 07  (=== The way to make components by React and making design with pass dynamic data efficient way ===)
 function App() {
     const products = [
       {name: 'Photoshop', price: '$90.99'},
