@@ -294,7 +294,7 @@ function MovieCounter(){
 export default App;
 
               
-// Video No - 07  (=== State Management Concept with Practically ===)
+// Video No - 07  (=== State Management Clear Concept with Practically ===)
 import React, {useState} from 'react';
 
 function App() {
@@ -331,6 +331,90 @@ function Users(props){
       <div style={userStyle}>
           <h2>{name}</h2>
           <h5>{level}</h5>
+      </div>
+  );
+}
+
+function MovieCounter(){
+  const movieStyle={
+    margin: '20px',
+    textAlign: 'center'
+  }
+  // const result = ['Arif', 'Azad']
+  // const first = result[0];
+  // const secound = result[1];
+  // console.log(first, secound);
+
+  // const [first, secound] = ['Arif', 'Azad'] 
+  // console.log(first, secound);
+
+  const [count, setCount] = useState(5);  
+  const handleClicked = () => setCount(count + 1);
+
+  return (
+    <div style={movieStyle}>
+      <button onClick={handleClicked}>Add Movie</button>
+      <h3>Number of Movies: {count}</h3>
+      <MovieDisplay movies={count}></MovieDisplay>
+      <MovieDisplay movies={count}></MovieDisplay>
+      <MovieDisplay movies={count}></MovieDisplay>
+    </div>
+  )
+}
+
+function MovieDisplay(props){
+  return <h4>Movies I have acted: {props.movies}</h4>
+}
+
+export default App;
+
+
+
+              
+// Video No - 10  (=== The way to load data from the API to local machine by React. And Discussion about the Key error in console with solution ===)
+import React, {useState, useEffect} from 'react';
+
+function App() {
+   const [userInfo, setUserInfo] = useState([])
+    useEffect(() => {
+       fetch('https://jsonplaceholder.typicode.com/users')
+       .then(res => res.json())
+       .then(data => setUserInfo(data))
+    }, [])
+
+  // const userInfo = [
+  //     {name: 'Tanvir', age: 'Ten'},
+  //     {name: 'Zubayer', age: 'Nine'},
+  //     {name: 'Mashrafi', age: 'Eight'}
+  // ]
+
+  return (
+    <div className="App">
+      <MovieCounter></MovieCounter>
+      <ul>
+        {
+          userInfo.map(usr => <Users name={usr.name} key={usr.id} city={usr.address.city}></Users>)
+        }  
+      </ul>            
+    </div>
+  );
+}
+
+function Users(props){
+  const userStyle = {
+      width: '200px',
+      height: '150px',
+      border: '2px solid black',
+      textAlign: 'center',
+      background: 'gray',
+      color: 'white',
+      margin: '10px'
+  };
+  // const {name, age} = props.users;
+  return (
+      <div style={userStyle}>
+          <h2>{props.name}</h2>
+          <h4>City: {props.city}</h4>
       </div>
   );
 }
