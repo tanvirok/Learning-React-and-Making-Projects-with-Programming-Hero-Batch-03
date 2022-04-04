@@ -228,4 +228,67 @@ function Users(){
 
 export default App;
 
-  
+
+                  // Module : 33
+// Video No - 06  (=== The way to declare State (useState) with detailed explanation ===)
+import React, {useState} from 'react';
+
+function App() {
+  const userInfo = [
+      {name: 'Tanvir', level: 'Ten'},
+      {name: 'Zubayer', level: 'Nine'},
+      {name: 'Mashrafi', level: 'Eight'}
+  ];
+
+  return (
+    <div className="App">
+      <MovieCounter></MovieCounter>
+      <ul>
+        {
+          userInfo.map(users => <Users users={users}></Users>)
+        }  
+      </ul>            
+    </div>
+  );
+}
+
+function Users(props){
+  const userStyle = {
+      width: '200px',
+      height: '150px',
+      border: '2px solid black',
+      textAlign: 'center',
+      background: 'gray',
+      color: 'white',
+      margin: '10px'
+  };
+  const {name, level} = props.users;
+  return (
+      <div style={userStyle}>
+          <h2>{name}</h2>
+          <h5>{level}</h5>
+      </div>
+  );
+}
+
+function MovieCounter(){
+  // const result = ['Arif', 'Azad']
+  // const first = result[0];
+  // const secound = result[1];
+  // console.log(first, secound);
+
+  // const [first, secound] = ['Arif', 'Azad'] 
+  // console.log(first, secound);
+
+  const [count, setCount] = useState(0);
+  console.log(count, setCount);  
+
+  return (
+    <div>
+      <button>Add Movie</button>
+      <h3>Number of Movies: </h3>
+    </div>
+  )
+}
+
+export default App;
